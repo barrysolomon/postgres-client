@@ -1,14 +1,10 @@
-# Control Plane - Environment Promotion Example
+# Control Plane - PostgreSQL Example
 
-This example project demonstrates CI/CD for releasing an app to multiple environments. Upon the creation of a pull request, a 'Review Workload' is deployed to a specified "Dev Org". It is prefixed by the branch name. In this manner, multiple branches can be worked on simultaneously. Whenever a pull request is merged, the app is deployed to the same environment with a dev- prefix.
-
-An image is only built once. A short hash is added to the image name to ensure uniqueness. That same image is then deployed to all environments, depending on the action being executed.
-
-While this example utilizes two orgs, it illustrates there's no limitation to the number of orgs you can use.
+This example project connects to a PostgreSQL database and executes a simple query.
 
 ## GitHub Actions
 
-This project contains three GitHub Actions (in the `./.github/workflows` directory):
+This project contains GitHub Actions (in the `./.github/workflows` directory):
 
 1. Before making code changes, create a new branch and perform any changes in the new branch. When ready to deploy a review workload, simply create a pull request to the main branch. On a pull request (or updates to an existing pull request) to the `main` branch, the application is containerized and pushed to the dev Org's private repository. The GVC and `Review Workload` is created (if it not already created) by applying the YAML contents of the files `./cpln/cpln-gvc.yaml` and `./cpln/cpln-workload.yaml`. The name of the `Review Workload` is prefixed by the name of the branch that created the pull request and a dash.
 2. When a pull request is accepted and the code is merged into the `main` branch, a `dev` workload is
