@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "cpln-image-new": "npm version patch && cpln image build --push --org initech --name $npm_package_name:$npm_package_version",
+    "cpln-image-new": "cpln image build --push --org initech --name $npm_package_name:$npm_package_version && npm version patch",
     "cpln-image-workload-new": "npm version patch && cpln image build --push --org initech --name $npm_package_name:$npm_package_version && cpln workload create --name $npm_package_name-dev --image //image/$npm_package_name:$npm_package_version --public --org initech --gvc bds-dev",
     "cpln-image-workload-update": "cpln image build --push --org initech --name $npm_package_name:$npm_package_version && cpln workload update bds-dynamodb-dev --set spec.containers.$npm_package_name.image=//image/$npm_package_name:$npm_package_version  --org initech --gvc bds-dev",
     "cpln-workload-update": "cpln workload update bds-dynamodb-dev --org initech --gvc bds-dev --set spec.containers.$npm_package_name.image=$npm_package_name:$npm_package_version",
